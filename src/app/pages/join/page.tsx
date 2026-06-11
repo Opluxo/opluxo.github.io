@@ -37,8 +37,8 @@ export default function JoinPage() {
 
       <section className="section section-dark">
         <div className="container">
-          <div style={{ textAlign: 'center', maxWidth: 700, margin: '0 auto 3rem' }}>
-            <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '1.1rem', lineHeight: 1.8 }}>
+          <div className="join-intro">
+            <p>
               无论你是初学者还是资深开发者，这里都有你的位置。我们欢迎所有热爱技术、愿意学习和贡献的人加入。
             </p>
           </div>
@@ -47,7 +47,7 @@ export default function JoinPage() {
             {roles.map((role, index) => (
               <FadeIn key={role.title} delay={index * 0.1}>
                 <div className="card">
-                  <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>{role.icon}</div>
+                  <div className="role-icon">{role.icon}</div>
                   <h3 className="card-title">{role.title}</h3>
                   <p className="card-desc" style={{ marginBottom: '1rem' }}>{role.desc}</p>
                   <ul className="skill-tags">
@@ -61,17 +61,17 @@ export default function JoinPage() {
           </div>
 
           <FadeIn>
-            <div style={{ textAlign: 'center', background: '#1a1a2e', padding: '3rem', borderRadius: 24 }}>
-              <h2 style={{ color: 'white', marginBottom: '0.75rem', fontSize: '2rem' }}>准备好加入了吗？</h2>
-              <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '2rem' }}>通过以下方式联系我们，开始你的开源之旅</p>
-              <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-                <a href="https://qm.qq.com/cgi-bin/qm/qr?k=8Y0nZ-6A5O4p3P3pT1vK9I2w5R4yA8V" target="_blank" className="btn btn-qq" style={{ borderRadius: 16 }}>
+            <div className="join-cta-card">
+              <h2 className="join-cta-title">准备好加入了吗？</h2>
+              <p className="join-cta-desc">通过以下方式联系我们，开始你的开源之旅</p>
+              <div className="join-cta-btns">
+                <a href="https://qm.qq.com/cgi-bin/qm/qr?k=8Y0nZ-6A5O4p3P3pT1vK9I2w5R4yA8V" target="_blank" className="btn btn-qq">
                   加入 QQ 群
                 </a>
-                <a href="https://github.com/OpenLight-Studio" target="_blank" className="btn btn-gh-dark" style={{ borderRadius: 16 }}>
+                <a href="https://github.com/OpenLight-Studio" target="_blank" className="btn btn-gh-dark">
                   <GitHubIcon size={20} /> GitHub
                 </a>
-                <a href="https://ifdian.net/a/OpenLight" target="_blank" className="btn" style={{ background: 'white', color: '#1a1a2e', borderRadius: 16 }}>
+                <a href="https://ifdian.net/a/OpenLight" target="_blank" className="btn cta-btn-light">
                   <HeartIcon size={20} /> 赞助我们
                 </a>
               </div>

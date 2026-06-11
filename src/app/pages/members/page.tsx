@@ -47,39 +47,39 @@ export default function MembersPage() {
   return (
     <>
       <Navbar />
-      <PageHeader title="团队成员" subtitle="认识驱动 OpenLight 的人们" />
+      <PageHeader title="团队成员" subtitle="认识驱动 Opluxo 的人们" />
 
       <section className="section section-dark">
         <div className="container">
           <div className="members-grid">
             {members.map((member, index) => (
               <FadeIn key={member.name} delay={index * 0.1}>
-                <div className="card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-                  <div style={{
-                    width: 100, height: 100, borderRadius: '50%', overflow: 'hidden',
-                    marginBottom: '1.5rem', border: '4px solid #0f0f1a',
-                    boxShadow: '0 8px 24px rgba(0,0,0,0.08)',
-                  }}>
-                    <img src={member.avatar} alt={member.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <div className="card member-card">
+                  <div className="member-avatar-wrap">
+                    <img
+                      src={member.avatar}
+                      alt={member.name}
+                      className="member-avatar"
+                      loading="lazy"
+                      width={100}
+                      height={100}
+                    />
                   </div>
-                  <span style={{ color: '#ff6b35', fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '0.5rem' }}>{member.role}</span>
-                  <h3 style={{ color: 'white', marginBottom: '0.25rem', fontSize: '1.25rem' }}>{member.name}</h3>
-                  <span style={{ color: '#ff6b35', fontSize: '0.9rem', fontWeight: 500, display: 'block', marginBottom: '1rem' }}>{member.handle}</span>
-                  <p className="card-desc" style={{ marginBottom: '1.5rem', lineHeight: 1.6 }}>{member.bio}</p>
-                  <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-                    <a href={member.github} target="_blank"
-                      style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem 1rem', background: '#0f0f1a', borderRadius: 8, color: 'rgba(255,255,255,0.6)', fontSize: '0.875rem', textDecoration: 'none' }}>
+                  <span className="member-role">{member.role}</span>
+                  <h3 className="member-name">{member.name}</h3>
+                  <span className="member-handle">{member.handle}</span>
+                  <p className="card-desc member-bio">{member.bio}</p>
+                  <div className="member-links">
+                    <a href={member.github} target="_blank" className="member-link-btn">
                       <GitHubIcon size={16} /> GitHub
                     </a>
                     {member.blog && (
-                      <a href={member.blog} target="_blank"
-                        style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem 1rem', background: '#0f0f1a', borderRadius: 8, color: 'rgba(255,255,255,0.6)', fontSize: '0.875rem', textDecoration: 'none' }}>
+                      <a href={member.blog} target="_blank" className="member-link-btn">
                         <GlobeIcon size={16} /> 博客
                       </a>
                     )}
                     {member.bilibili && (
-                      <a href={member.bilibili} target="_blank"
-                        style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem 1rem', background: '#0f0f1a', borderRadius: 8, color: 'rgba(255,255,255,0.6)', fontSize: '0.875rem', textDecoration: 'none' }}>
+                      <a href={member.bilibili} target="_blank" className="member-link-btn">
                         <BilibiliIcon size={16} /> B站
                       </a>
                     )}

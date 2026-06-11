@@ -31,11 +31,11 @@ export default function AboutPage() {
   return (
     <>
       <Navbar />
-      <PageHeader title="关于 OpenLight" subtitle="成立于 2022，探索底层技术的开源工作室" />
+      <PageHeader title="关于 Opluxo" subtitle="成立于 2022，探索底层技术的开源工作室" />
 
       <section className="section section-dark">
         <div className="container">
-          <div className="grid-auto" style={{ marginBottom: '6rem' }}>
+          <div className="grid-auto grid-mb">
             {aboutCards.map((card, index) => (
               <FadeIn key={card.title} delay={index * 0.1}>
                 <div className="card">
@@ -47,16 +47,16 @@ export default function AboutPage() {
             ))}
           </div>
 
-          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+          <div className="text-center grid-mb-md">
             <h2 className="section-title">核心价值观</h2>
             <div className="section-line" />
           </div>
 
-          <div className="grid-auto" style={{ marginBottom: '6rem' }}>
+          <div className="grid-auto grid-mb">
             {values.map((value, index) => (
               <FadeIn key={value.title} delay={index * 0.1}>
-                <div className="card" style={{ textAlign: 'center' }}>
-                  <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>{value.icon}</div>
+                <div className="card text-center">
+                  <div className="role-icon">{value.icon}</div>
                   <h4 className="card-title">{value.title}</h4>
                   <p className="card-desc">{value.desc}</p>
                 </div>
@@ -64,7 +64,7 @@ export default function AboutPage() {
             ))}
           </div>
 
-          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+          <div className="text-center grid-mb-md">
             <h2 className="section-title">发展历程</h2>
             <div className="section-line" />
           </div>

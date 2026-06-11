@@ -11,7 +11,7 @@ export function PageHeader({ title, subtitle }: Props) {
   return (
     <section className="page-header-section">
       <div className="page-header-bg" />
-      <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
+      <div className="container page-header-content">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

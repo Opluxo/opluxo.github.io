@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import { navLinks } from '@/data/navigation';
 import { GitHubIcon } from './icons';
@@ -9,11 +9,21 @@ export function Navbar() {
   const pathname = usePathname() ?? '';
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
+    const onScroll = () => {
+      if (rafRef.current) return;
+      rafRef.current = requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 50);
+        rafRef.current = null;
+      });
+    };
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
   }, []);
 
   useEffect(() => {
@@ -22,23 +32,11 @@ export function Navbar() {
 
   return (
     <>
-      <nav
-        style={{
-          position: 'fixed',
-          top: 0,
-          width: '100%',
-          background: scrolled ? 'rgba(15, 15, 26, 0.95)' : 'rgba(15, 15, 26, 0.7)',
-          backdropFilter: 'blur(20px)',
-          zIndex: 1000,
-          transition: 'all 0.4s ease',
-          borderBottom: scrolled ? '1px solid rgba(255,255,255,0.1)' : 'none',
-          boxShadow: scrolled ? '0 8px 24px rgba(0,0,0,0.08)' : 'none',
-        }}
-      >
+      <nav className={scrolled ? 'nav-scrolled' : 'nav-default'}>
         <div className="nav-inner">
           <a href="/" className="nav-logo">
             <div className="nav-logo-icon">OL</div>
-            <span className="nav-logo-text">OpenLight</span>
+            <span className="nav-logo-text">Opluxo</span>
           </a>
 
           <div className="nav-links-desktop">

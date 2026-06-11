@@ -47,7 +47,7 @@ export default function ProjectsPage() {
                 <div className="project-card">
                   <div className="project-card-header">
                     <div className="project-icon">{project.icon}</div>
-                    <div className="project-meta" style={{ flex: 1 }}>
+                    <div className="project-meta">
                       <span className="project-tag">{project.tag}</span>
                       <h2 className="project-name">{project.name}</h2>
                       <span className="project-license">{project.license}</span>
@@ -57,7 +57,7 @@ export default function ProjectsPage() {
                   <div className="project-body">
                     <p className="project-desc">{project.desc}</p>
 
-                    <h4 style={{ color: 'white', marginBottom: '0.75rem', fontSize: '1rem' }}>特性</h4>
+                    <h4 className="project-feature-title">特性</h4>
                     <ul className="feature-list">
                       {project.features.map((feature) => (
                         <li key={feature}>{feature}</li>
@@ -70,7 +70,7 @@ export default function ProjectsPage() {
                       ))}
                     </div>
 
-                    <a href={project.github} target="_blank" className="btn btn-primary" style={{ padding: '0.75rem 1.5rem', fontSize: '0.875rem' }}>
+                    <a href={project.github} target="_blank" className="btn btn-primary btn-sm">
                       <GitHubIcon size={16} /> 查看源码
                     </a>
                   </div>

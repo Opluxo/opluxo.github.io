@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
@@ -13,21 +13,31 @@ export default function Home() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [typedText, setTypedText] = useState('');
+  const typeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-      setScrollProgress(scrollPercent);
-      setShowScrollTop(window.scrollY > 400);
+      if (rafRef.current) return;
+      rafRef.current = requestAnimationFrame(() => {
+        const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+        setScrollProgress(scrollPercent);
+        setShowScrollTop(window.scrollY > 400);
+        rafRef.current = null;
+      });
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
   }, []);
 
   useEffect(() => {
-    let textIndex = 0, charIndex = 0, isDeleting = false, typeSpeed = 100;
+    let textIndex = 0, charIndex = 0, isDeleting = false;
     const type = () => {
       const currentText = typewriterTexts[textIndex];
+      let typeSpeed = 100;
       if (isDeleting) {
         setTypedText(currentText.substring(0, charIndex - 1));
         charIndex--;
@@ -35,7 +45,7 @@ export default function Home() {
       } else {
         setTypedText(currentText.substring(0, charIndex + 1));
         charIndex++;
-        typeSpeed = 100;
+        typeSpeed = 120;
       }
       if (!isDeleting && charIndex === currentText.length) {
         isDeleting = true; typeSpeed = 2000;
@@ -44,9 +54,12 @@ export default function Home() {
         textIndex = (textIndex + 1) % typewriterTexts.length;
         typeSpeed = 500;
       }
-      setTimeout(type, typeSpeed);
+      typeTimerRef.current = setTimeout(type, typeSpeed);
     };
-    setTimeout(type, 1000);
+    typeTimerRef.current = setTimeout(type, 1000);
+    return () => {
+      if (typeTimerRef.current) clearTimeout(typeTimerRef.current);
+    };
   }, []);
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -68,7 +81,7 @@ export default function Home() {
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
             <div className="hero-badge">
               <span className="hero-badge-dot" />
-              成立于 2022 · 探索底层技术
+              <span className="badge-text-cjk">成立于 2022 · 探索底层技术</span>
             </div>
           </motion.div>
 
@@ -99,17 +112,17 @@ export default function Home() {
 
       <section className="section section-dark preview-section">
         <div className="container">
-          <SectionHeader title="探索 OpenLight" />
+          <SectionHeader title="探索 Opluxo" />
           <div className="grid-auto">
             {previewCards.map((card, index) => (
               <FadeIn key={card.title} delay={index * 0.1}>
-                <a href={card.href} className="card" style={{ textAlign: 'center', textDecoration: 'none', display: 'block' }}>
-                  <div className="card-icon" style={{ color: '#ff6b35' }}>
+                <a href={card.href} className="card card-hoverable">
+                  <div className="card-icon icon-card-icon">
                     <PreviewIcon name={card.icon} />
                   </div>
                   <h3 className="card-title">{card.title}</h3>
                   <p className="card-desc" style={{ marginBottom: '1rem' }}>{card.desc}</p>
-                  <span style={{ color: '#ff6b35', fontWeight: 600, fontSize: '0.9rem' }}>{card.link}</span>
+                  <span className="card-link-text">{card.link}</span>
                 </a>
               </FadeIn>
             ))}
@@ -117,18 +130,20 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section section-darker" style={{ position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', inset: 0, opacity: 0.03, background: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` }} />
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <div className="grid-auto-sm">
-            {statsData.map((stat, index) => (
-              <FadeIn key={stat.label} delay={index * 0.1}>
-                <div className="stat-card">
-                  <div className="stat-number">{stat.number}</div>
-                  <div className="stat-label">{stat.label}</div>
-                </div>
-              </FadeIn>
-            ))}
+      <section className="section section-darker section-with-pattern">
+        <div className="pattern-overlay" style={{ background: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` }} />
+        <div className="section-content">
+          <div className="container">
+            <div className="grid-auto-sm">
+              {statsData.map((stat, index) => (
+                <FadeIn key={stat.label} delay={index * 0.1}>
+                  <div className="stat-card">
+                    <div className="stat-number">{stat.number}</div>
+                    <div className="stat-label">{stat.label}</div>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -139,7 +154,7 @@ export default function Home() {
           <div className="grid-auto-xs">
             {techItems.map((tech, index) => (
               <FadeIn key={tech.name} delay={index * 0.1}>
-                <div className="card" style={{ textAlign: 'center' }}>
+                <div className="card text-center">
                   <h4 className="card-title">{tech.name}</h4>
                   <p className="card-desc">{tech.desc}</p>
                 </div>
@@ -149,24 +164,23 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section" style={{
-        background: 'linear-gradient(135deg, #ff6b35 0%, #f7931e 100%)',
-        position: 'relative', overflow: 'hidden',
-      }}>
-        <div style={{ position: 'absolute', inset: 0, opacity: 0.05, background: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z' fill='%23ffffff' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E")` }} />
+      <section className="cta-section section">
+        <div className="pattern-overlay" style={{ background: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z' fill='%23ffffff' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E")` }} />
         <FadeIn>
-          <div className="container" style={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
-            <h2 style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', color: 'white', marginBottom: '1rem' }}>准备好加入我们了吗？</h2>
-            <p style={{ color: 'rgba(255,255,255,0.85)', maxWidth: 500, margin: '0 auto 2rem' }}>
-              无论你是初学者还是资深开发者，这里都有你的位置
-            </p>
-            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <a href="https://github.com/OpenLight-Studio" target="_blank" className="btn" style={{ background: 'white', color: '#1a1a2e', borderRadius: 16 }}>
-                <GitHubIcon size={20} /> 访问 GitHub
-              </a>
-              <a href="https://ifdian.net/a/OpenLight" target="_blank" className="btn" style={{ background: 'white', color: '#1a1a2e', borderRadius: 16 }}>
-                <HeartIcon size={20} /> 爱发电赞助
-              </a>
+          <div className="cta-content">
+            <div className="container">
+              <h2 className="cta-title">准备好加入我们了吗？</h2>
+              <p className="cta-desc">
+                无论你是初学者还是资深开发者，这里都有你的位置
+              </p>
+              <div className="cta-btns">
+                <a href="https://github.com/OpenLight-Studio" target="_blank" className="btn cta-btn-light">
+                  <GitHubIcon size={20} /> 访问 GitHub
+                </a>
+                <a href="https://ifdian.net/a/OpenLight" target="_blank" className="btn cta-btn-light">
+                  <HeartIcon size={20} /> 爱发电赞助
+                </a>
+              </div>
             </div>
           </div>
         </FadeIn>
