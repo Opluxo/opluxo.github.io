@@ -49,7 +49,7 @@ export default function MembersPage() {
       <Navbar />
       <PageHeader title="团队成员" subtitle="认识驱动 Opluxo 的人们" />
 
-      <section className="section section-dark">
+      <section className="section section-gray">
         <div className="container">
           <div className="members-grid">
             {members.map((member, index) => (

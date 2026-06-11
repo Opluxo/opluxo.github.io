@@ -33,7 +33,7 @@ export default function AboutPage() {
       <Navbar />
       <PageHeader title="关于 Opluxo" subtitle="成立于 2022，探索底层技术的开源工作室" />
 
-      <section className="section section-dark">
+      <section className="section section-gray">
         <div className="container">
           <div className="grid-auto grid-mb">
             {aboutCards.map((card, index) => (

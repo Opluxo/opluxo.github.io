@@ -39,7 +39,7 @@ export default function ProjectsPage() {
       <Navbar />
       <PageHeader title="核心项目" subtitle="从操作系统到编程语言，探索我们的开源项目" />
 
-      <section className="section section-dark">
+      <section className="section section-gray">
         <div className="container">
           <div className="project-list">
             {projects.map((project, index) => (

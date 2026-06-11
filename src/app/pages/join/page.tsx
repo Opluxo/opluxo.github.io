@@ -35,7 +35,7 @@ export default function JoinPage() {
       <Navbar />
       <PageHeader title="加入我们" subtitle="与志同道合的开发者一起创造未来" />
 
-      <section className="section section-dark">
+      <section className="section section-gray">
         <div className="container">
           <div className="join-intro">
             <p>
