@@ -20,11 +20,11 @@ const values = [
 ];
 
 const timeline = [
-  { date: '2022.12', title: 'OpenLight Studio 成立', desc: '组织在 GitHub 上创建，开始探索底层技术' },
+  { date: '2022.12', title: 'Opluxo LLC 成立', desc: '组织在 GitHub 上创建，开始探索底层技术' },
   { date: 'BrightS', title: 'BrightS 内核项目启动', desc: '基于 UNIX V6 设计理念的 x86_64 UEFI 内核' },
   { date: 'D--', title: 'D Substract (D--) 编程语言', desc: '专为青少年设计的编程语言' },
   { date: 'FH Clac', title: 'Frequency Histogram Clac 发布', desc: '跨平台直方图生成器' },
-  { date: '官网', title: '官方网站上线', desc: 'OpenLight Studio 官方网站部署至 GitHub Pages' },
+  { date: '官网', title: '官方网站上线', desc: 'Opluxo LLC 官方网站部署至 GitHub Pages' },
 ];
 
 export default function AboutPage() {

@@ -2,7 +2,7 @@ export const previewCards = [
   {
     icon: 'about',
     title: '关于我们',
-    desc: '了解 OpenLight Studio 的起源与使命',
+    desc: '了解 Opluxo LLC 的起源与使命',
     link: '了解更多 →',
     href: '/pages/about',
   },
@@ -49,5 +49,5 @@ export const typewriterTexts = [
   "Building BrightS Kernel...",
   "Designing D-subtract for Teens...",
   "Visualizing Data with FH Clac...",
-  "OpenLight Studio: Est. 2022",
+  "Opluxo LLC: Est. 2022",
 ];
