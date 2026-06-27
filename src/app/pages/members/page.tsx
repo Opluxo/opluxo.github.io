@@ -4,7 +4,7 @@ import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { PageHeader } from '@/components/PageHeader';
 import { FadeIn } from '@/components/MotionDiv';
-import { GitHubIcon, GlobeIcon, BilibiliIcon } from '@/components/icons';
+import { GithubLogo, Globe, Television } from '@phosphor-icons/react';
 
 const members = [
   {
@@ -46,38 +46,52 @@ export default function MembersPage() {
       <Navbar />
       <PageHeader title="团队成员" subtitle="认识驱动 Opluxo 的人们" />
 
-      <section className="section section-gray">
-        <div className="container">
-          <div className="members-grid">
+      <section className="py-20 bg-surface/50">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {members.map((member, index) => (
               <FadeIn key={member.name} delay={index * 0.1}>
-                <div className="card member-card">
-                  <div className="member-avatar-wrap">
+                <div className="flex flex-col items-center text-center p-7 rounded-2xl bg-surface border border-border/30 card-glow transition-all duration-300 hover:-translate-y-1">
+                  <div className="w-22 h-22 rounded-full overflow-hidden mb-5 transition-transform duration-300 hover:scale-105 shadow-lg shadow-black/20">
                     <img
                       src={member.avatar}
                       alt={member.name}
-                      className="member-avatar"
+                      className="w-full h-full object-cover"
                       loading="lazy"
-                      width={100}
-                      height={100}
+                      width={88}
+                      height={88}
                     />
                   </div>
-                  <span className="member-role">{member.role}</span>
-                  <h3 className="member-name">{member.name}</h3>
-                  <span className="member-handle">{member.handle}</span>
-                  <p className="card-desc member-bio">{member.bio}</p>
-                  <div className="member-links">
-                    <a href={member.github} target="_blank" className="member-link-btn">
-                      <GitHubIcon size={14} /> GitHub
+                  <span className="text-accent text-xs font-semibold uppercase tracking-widest mb-2">
+                    {member.role}
+                  </span>
+                  <h3 className="text-base font-semibold text-foreground mb-1">{member.name}</h3>
+                  <span className="text-text-muted text-sm mb-4">{member.handle}</span>
+                  <p className="text-text-secondary text-sm leading-relaxed mb-5">{member.bio}</p>
+                  <div className="flex gap-2 justify-center flex-wrap">
+                    <a
+                      href={member.github}
+                      target="_blank"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-surface-elevated text-text-secondary text-xs transition-all duration-200 hover:bg-accent hover:text-background no-underline"
+                    >
+                      <GithubLogo size={14} weight="fill" /> GitHub
                     </a>
                     {member.blog && (
-                      <a href={member.blog} target="_blank" className="member-link-btn">
-                        <GlobeIcon size={14} /> 博客
+                      <a
+                        href={member.blog}
+                        target="_blank"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-surface-elevated text-text-secondary text-xs transition-all duration-200 hover:bg-accent hover:text-background no-underline"
+                      >
+                        <Globe size={14} /> 博客
                       </a>
                     )}
                     {member.bilibili && (
-                      <a href={member.bilibili} target="_blank" className="member-link-btn">
-                        <BilibiliIcon size={14} /> B站
+                      <a
+                        href={member.bilibili}
+                        target="_blank"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-surface-elevated text-text-secondary text-xs transition-all duration-200 hover:bg-accent hover:text-background no-underline"
+                      >
+                        <Television size={14} /> B站
                       </a>
                     )}
                   </div>
