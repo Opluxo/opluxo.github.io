@@ -71,7 +71,7 @@ export default function ProjectsPage() {
                     </div>
 
                     <a href={project.github} target="_blank" className="btn btn-primary btn-sm">
-                      <GitHubIcon size={16} /> 查看源码
+                      <GitHubIcon size={14} /> 查看源码
                     </a>
                   </div>
                 </div>

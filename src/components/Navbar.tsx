@@ -15,7 +15,7 @@ export function Navbar() {
     const onScroll = () => {
       if (rafRef.current) return;
       rafRef.current = requestAnimationFrame(() => {
-        setScrolled(window.scrollY > 50);
+        setScrolled(window.scrollY > 10);
         rafRef.current = null;
       });
     };
@@ -58,7 +58,7 @@ export function Navbar() {
               className="nav-gh-btn"
               aria-label="GitHub"
             >
-              <GitHubIcon size={18} />
+              <GitHubIcon size={16} />
             </a>
           </div>
 

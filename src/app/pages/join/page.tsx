@@ -69,10 +69,10 @@ export default function JoinPage() {
                   加入 QQ 群
                 </a>
                 <a href="https://github.com/OpenLight-Studio" target="_blank" className="btn btn-gh-dark">
-                  <GitHubIcon size={20} /> GitHub
+                  <GitHubIcon size={18} /> GitHub
                 </a>
                 <a href="https://ifdian.net/a/OpenLight" target="_blank" className="btn cta-btn-light">
-                  <HeartIcon size={20} /> 赞助我们
+                  <HeartIcon size={18} /> 赞助我们
                 </a>
               </div>
             </div>

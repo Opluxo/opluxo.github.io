@@ -22,7 +22,7 @@ export default function Home() {
       rafRef.current = requestAnimationFrame(() => {
         const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
         setScrollProgress(scrollPercent);
-        setShowScrollTop(window.scrollY > 400);
+        setShowScrollTop(window.scrollY > 600);
         rafRef.current = null;
       });
     };
@@ -72,34 +72,34 @@ export default function Home() {
 
       <section className="hero-section">
         <div className="hero-bg">
-          <div className="hero-orb" style={{ width: 600, height: 600, background: 'rgba(0,113,227,0.25)', top: -200, right: -100 }} />
-          <div className="hero-orb" style={{ width: 400, height: 400, background: 'rgba(52,199,89,0.12)', bottom: -100, left: -100, animationDelay: '-7s' }} />
-          <div className="hero-orb" style={{ width: 300, height: 300, background: 'rgba(88,86,214,0.15)', top: '40%', left: '30%', animationDelay: '-14s' }} />
+          <div className="hero-orb" style={{ width: 600, height: 600, background: 'rgba(0,113,227,0.3)', top: -200, right: -100 }} />
+          <div className="hero-orb" style={{ width: 450, height: 450, background: 'rgba(52,199,89,0.12)', bottom: -150, left: -100, animationDelay: '-7s' }} />
+          <div className="hero-orb" style={{ width: 350, height: 350, background: 'rgba(191,90,242,0.15)', top: '40%', left: '30%', animationDelay: '-14s' }} />
         </div>
 
         <div className="hero-content">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}>
             <div className="hero-badge">
               <span className="hero-badge-dot" />
-              <span className="badge-text-cjk">成立于 2022 · 探索底层技术</span>
+              <span>成立于 2022 · 探索底层技术</span>
             </div>
           </motion.div>
 
-          <motion.h1 className="hero-title" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1 }}>
-            We Build the <span className="highlight">Light</span> Behind Code.
+          <motion.h1 className="hero-title" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}>
+            We Build the <span className="highlight">Light</span><br />Behind Code.
           </motion.h1>
 
-          <motion.p className="hero-subtitle" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
+          <motion.p className="hero-subtitle" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}>
             透过代码，传递光亮
           </motion.p>
 
-          <motion.p className="hero-typewriter" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}>
+          <motion.p className="hero-typewriter" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}>
             {typedText}
           </motion.p>
 
-          <motion.div className="hero-btns" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }}>
+          <motion.div className="hero-btns" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}>
             <a href="/pages/projects" className="btn btn-primary">
-              探索项目 <ArrowRightIcon />
+              探索项目 <ArrowRightIcon size={18} />
             </a>
             <a href="/pages/join" className="btn btn-outline">加入我们</a>
           </motion.div>
@@ -131,7 +131,7 @@ export default function Home() {
       </section>
 
       <section className="section section-gray section-with-pattern">
-        <div className="pattern-overlay" style={{ background: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` }} />
+        <div className="pattern-overlay" style={{ background: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` }} />
         <div className="section-content">
           <div className="container">
             <div className="grid-auto-sm">
@@ -164,8 +164,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="cta-section section">
-        <div className="pattern-overlay" style={{ background: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E")` }} />
+      <section className="cta-section">
         <FadeIn>
           <div className="cta-content">
             <div className="container">
@@ -175,10 +174,10 @@ export default function Home() {
               </p>
               <div className="cta-btns">
                 <a href="https://github.com/OpenLight-Studio" target="_blank" className="btn cta-btn-light">
-                  <GitHubIcon size={20} /> 访问 GitHub
+                  <GitHubIcon size={18} /> 访问 GitHub
                 </a>
                 <a href="https://ifdian.net/a/OpenLight" target="_blank" className="btn cta-btn-light">
-                  <HeartIcon size={20} /> 爱发电赞助
+                  <HeartIcon size={18} /> 爱发电赞助
                 </a>
               </div>
             </div>

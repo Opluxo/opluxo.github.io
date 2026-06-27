@@ -35,7 +35,7 @@ export default function AboutPage() {
 
       <section className="section section-gray">
         <div className="container">
-          <div className="grid-auto grid-mb">
+          <div className="grid-auto">
             {aboutCards.map((card, index) => (
               <FadeIn key={card.title} delay={index * 0.1}>
                 <div className="card">
@@ -47,12 +47,12 @@ export default function AboutPage() {
             ))}
           </div>
 
-          <div className="text-center grid-mb-md">
+          <div className="text-center" style={{ marginTop: 64, marginBottom: 48 }}>
             <h2 className="section-title">核心价值观</h2>
             <div className="section-line" />
           </div>
 
-          <div className="grid-auto grid-mb">
+          <div className="grid-auto">
             {values.map((value, index) => (
               <FadeIn key={value.title} delay={index * 0.1}>
                 <div className="card text-center">
@@ -64,14 +64,14 @@ export default function AboutPage() {
             ))}
           </div>
 
-          <div className="text-center grid-mb-md">
+          <div className="text-center" style={{ marginTop: 64, marginBottom: 48 }}>
             <h2 className="section-title">发展历程</h2>
             <div className="section-line" />
           </div>
 
           <div className="timeline">
             {timeline.map((item, index) => (
-              <FadeIn key={item.date} delay={index * 0.1} x={-30}>
+              <FadeIn key={item.date} delay={index * 0.1} x={-20}>
                 <div className="timeline-item">
                   <div className="timeline-marker" />
                   <div className="timeline-content">
